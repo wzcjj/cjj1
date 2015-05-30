@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1431525584 source:d:\cjj1\hust\78062\1\1\main.cpp
+	<iostream>
+	<cstdio>
+	<cstdlib>
+	<cmath>
+

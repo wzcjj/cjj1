@@ -1,0 +1,2 @@
+netstat -n
+netstat -an

@@ -1,0 +1,65 @@
+-- VERSION_4
+-- START DISKCACHE
+D:\cjj1\Android\.metadata\.plugins\org.eclipse.core.resources\.projects\cms\com.python.pydev.analysis\v2_indexcache
+cms.urls|1427014032414|D:\cjj1\python\cms\cms\urls.py
+cms1.migrations.0001_initial|1427000053818|D:\cjj1\python\cms\cms1\migrations\0001_initial.py
+cms1.migrations.__init__|1426900983013|D:\cjj1\python\cms\cms1\migrations\__init__.py
+cms.settings|1426902918982|D:\cjj1\python\cms\cms\settings.py
+cms1.__init__|1426900983011|D:\cjj1\python\cms\cms1\__init__.py
+cms1.models|1426999738988|D:\cjj1\python\cms\cms1\models.py
+cms1.tests|1426900983010|D:\cjj1\python\cms\cms1\tests.py
+cms1.views|1427014024824|D:\cjj1\python\cms\cms1\views.py
+cms.wsgi|1426900311315|D:\cjj1\python\cms\cms\wsgi.py
+cms.__init__|1426900311316|D:\cjj1\python\cms\cms\__init__.py
+cms1.admin|1427000412551|D:\cjj1\python\cms\cms1\admin.py
+manage|1426900311286|D:\cjj1\python\cms\manage.py
+-- END DISKCACHE
+-- START DICTIONARY
+9
+6=cms.urls
+5=cms1.migrations.0001_initial
+9=Migration
+1=cms.settings
+4=cms1.models
+7=Reporter
+8=Article
+3=cms1.views
+2=cms.wsgi
+-- END DICTIONARY
+-- START TREE 1
+23
+all|1|ALLOWED_HOSTS!11@
+app|1|application!19@
+art|2|article_detail!26@Article!33@
+bas|1|BASE_DIR!11@
+dat|1|DATABASES!11@
+deb|1|DEBUG!11@
+ind|1|index!26@
+ins|1|INSTALLED_APPS!11@
+lan|1|LANGUAGE_CODE!11@
+mid|1|MIDDLEWARE_CLASSES!11@
+mig|1|Migration!41@
+mon|1|month_archive!26@
+rep|1|Reporter!33@
+roo|1|ROOT_URLCONF!11@
+sec|1|SECRET_KEY!11@
+sit|1|SITE_ID!11@
+sta|1|STATIC_URL!11@
+tem|1|TEMPLATE_DEBUG!11@
+tim|1|TIME_ZONE!11@
+url|1|urlpatterns!51@
+use|3|USE_L10N!11@USE_I18N!11@USE_TZ!11@
+wsg|1|WSGI_APPLICATION!11@
+yea|1|year_archive!26@
+-- END TREE
+-- START TREE 2
+8
+__s|2|__str__!7&34@__str__!8&34@
+con|1|content!8&35@
+dep|1|dependencies!9&43@
+ful|1|full_name!7&35@
+hea|1|headline!8&35@
+ope|1|operations!9&43@
+pub|1|pub_date!8&35@
+rep|1|reporter!8&35@
+-- END TREE

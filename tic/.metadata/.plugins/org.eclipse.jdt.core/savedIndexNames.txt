@@ -1,0 +1,2 @@
+INDEX VERSION 1.127+D:\cjj1\tic\.metadata\.plugins\org.eclipse.jdt.core
+3017876192.index

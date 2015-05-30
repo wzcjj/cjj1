@@ -1,0 +1,30 @@
+\documentclass[9pt]{article}
+\usepackage[a4paper]{geometry}
+
+\input{format.tex} % formatting template
+
+\begin{document}
+
+\title{\Huge \hei \bf ACM-ICPC代码模板库}
+\author{南京大学ACM-ICPC集训队}
+\date{}
+
+\maketitle
+
+\begin{multicols}{2}
+\tableofcontents
+\end{multicols}
+
+\newpage
+
+\columnseprule=0.25pt
+
+\begin{multicols}{2}
+\input{code.tex}
+
+\section*{致谢}
+
+代码库的自动生成脚本是由蒋炎岩完成的，为每行代码生成校验和的想法来自赵建华老师。邱晨曦、周钇驰、康望程贡献了一些外挂代码。
+
+\end{multicols}
+\end{document}

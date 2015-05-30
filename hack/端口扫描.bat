@@ -1,0 +1,1 @@
+for /l %%a in (1,1,254) do for /l %%b in (1,1,65535) do start /low/min telnet 192.168.0.%%a %%b

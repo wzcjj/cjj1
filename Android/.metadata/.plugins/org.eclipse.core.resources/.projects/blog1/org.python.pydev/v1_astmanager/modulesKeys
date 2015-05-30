@@ -1,0 +1,12 @@
+MODULES_MANAGER_V2
+blog.__init__|D:\cjj1\python\django\blog\__init__.py
+blog.admin|D:\cjj1\python\django\blog\admin.py
+blog.migrations.__init__|D:\cjj1\python\django\blog\migrations\__init__.py
+blog.models|D:\cjj1\python\django\blog\models.py
+blog.tests|D:\cjj1\python\django\blog\tests.py
+blog.views|D:\cjj1\python\django\blog\views.py
+manage|D:\cjj1\python\django\manage.py
+src.__init__|D:\cjj1\python\django\src\__init__.py
+src.settings|D:\cjj1\python\django\src\settings.py
+src.urls|D:\cjj1\python\django\src\urls.py
+src.wsgi|D:\cjj1\python\django\src\wsgi.py

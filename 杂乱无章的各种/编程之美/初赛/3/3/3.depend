@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1429947918 source:d:\cjj1\杂乱无章的各种\编程之美\初赛\3\3\main.cpp
+	<iostream>
+	<cstdio>
+	<string>
+	<cstring>
+	<algorithm>
+	<vector>
+
