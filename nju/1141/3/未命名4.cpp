@@ -2,7 +2,6 @@
 #include<iostream>
 #include<cstring>
 #include<string>
-#include<stack>
 using namespace std;
 string s1,s2;
 void dfs(int l1,int r1,int l2,int r2){
@@ -15,7 +14,6 @@ void dfs(int l1,int r1,int l2,int r2){
     }
 }
 int main(){
-    int i,j,m,n;
     cin>>s1>>s2;
     dfs(0,s1.size()-1,0,s1.size()-1);
     return 0;
