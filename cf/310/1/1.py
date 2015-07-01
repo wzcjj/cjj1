@@ -1,2 +1,1 @@
-n,a=input(),input()
-print(abs(a.count('0')-a.count('1')))
+print(abs(int(input())-2*input().count('1')))
