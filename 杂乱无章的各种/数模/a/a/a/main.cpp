@@ -1,3 +1,11 @@
+//
+//  main.cpp
+//  a
+//
+//  Created by wzcjj on 15/7/31.
+//  Copyright (c) 2015年 wzcjj. All rights reserved.
+//
+
 #include<cstdio>
 #include<cstring>
 #include<iostream>
@@ -45,22 +53,22 @@ void calc(int x){
             }
         }
         if(maxx<ansl){
-            freopen("a.out","w",stdout);
+            //freopen("a.out","w",stdout);
             ansl=maxx;
             for(int i=0;i<m;i++){
                 for(int j=1;j<=2;j++){
                     for(int k=0;k<sum[i][j].size();k++){
                         printf("%d ",sum[i][j][k]);
                     }
-                    printf("           %d",sum[i][j].size()); 
+                    printf("           %d",sum[i][j].size());
                     printf("\n");
                 }
                 printf("\n\n");
             }
             printf("%d\n",ansl);
             //printf("aa");
-            fclose(stdout);
-            freopen("CON","w",stdout);
+            //fclose(stdout);
+            //freopen("CON","w",stdout);
             //printf("bb");
         }
         //else printf("%d ",maxx);
@@ -80,7 +88,7 @@ void calc(int x){
 }
 int main(){
     srand(unsigned(time(0)));
-    freopen("a.in","r",stdin);
+    //freopen("a.in","r",stdin);
     int i,j,k,t,i4,i5,i6,i7,i8,i9,i10;
     cin>>n;
     for(i=0;pow(3,i)<=n;i++);
@@ -90,24 +98,27 @@ int main(){
     b[1][1]=3;
     while(true){
         //printf("aa");
-    //for(i4=4;i4<=6;i4++)
-//    for(i5=i4+2;i5<=9;i5++)
-//    for(i6=i5+3;i6<=18;i6++)
-//    for(i7=max(i6+4,13);i7<=27;i7++)
-//    for(i8=max(i7+5,27);i8<=53;i8++)
-//    for(i9=max(i8+6,40);i9<=60;i9++)
-//    for(i10=70;i10<=76;i10++){
+        //for(i4=4;i4<=6;i4++)
+        //    for(i5=i4+2;i5<=9;i5++)
+        //    for(i6=i5+3;i6<=18;i6++)
+        //    for(i7=max(i6+4,13);i7<=27;i7++)
+        //    for(i8=max(i7+5,27);i8<=53;i8++)
+        //    for(i9=max(i8+6,40);i9<=60;i9++)
+        //    for(i10=70;i10<=76;i10++){
         i4=6;
         i5=9;
-        i6=17;
-        i7=20;
-        i4=rand()%3+4;
+        i6=16;
+        i7=24;
+        i8=36;
+        i9=48;
+        i10=59;
+        /*i4=rand()%3+4;
         i5=rand()%(9-i4)+i4+1;
         i6=rand()%(18-i5)+i5+1;
         i7=rand()%(27-i6)+i6+1;
         i8=rand()%(50-i7)+i7+1;
         i9=rand()%(75-i8)+i8+1;
-        i10=rand()%(120-i9)+i9+1;
+        i10=rand()%(120-i9)+i9+1;*/
         b[1][2]=i4;
         b[2][1]=i5;
         b[2][2]=i6;
@@ -137,7 +148,7 @@ int main(){
             }
         }
         for(j=1;j<=1000000;j++)calc(1);
-    //}
+        //}
     }
     return 0;
 }
