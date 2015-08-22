@@ -1,6 +1,3 @@
-// 二叉树LCA在线算法, 转化为RMQ问题
-// c/c++是大小写敏感的, NULL=0, null只是一个符号 
-   
 #include <iostream>
 #include <cmath>
 
