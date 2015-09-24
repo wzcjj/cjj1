@@ -1,20 +1,25 @@
-//
-//  main.cpp
-//  1
-//
-//  Created by wzcjj on 15/7/30.
-//  Copyright (c) 2015年 wzcjj. All rights reserved.
-//
-
-#include <iostream>
 #include <cstdio>
+#include <iostream>
+#include <fstream>
 #include <cstring>
+#include <climits>
+#include <deque>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <list>
+#include <map>
+#include <set>
+#include <utility>
+#include <sstream>
+#include <complex>
 #include <string>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
+#include <bitset>
+#include <functional>
 #include <algorithm>
-#include <cmath>
-#include <set>
-#include <queue>
 #pragma comment(linker, "/STACK:102400000,102400000")
 #define maxn 10005
 #define P 1000000007

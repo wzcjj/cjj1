@@ -1,0 +1,4 @@
+for i in *
+do
+   echo ${i##*/} #文件名
+done > filename.txt
