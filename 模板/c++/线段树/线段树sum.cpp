@@ -26,6 +26,9 @@ public:
     SegmentTree(int size){
         build(1, size);
     }
+
+    SegmentTree(){
+    }
     
     void add(int l,int r,int v,int p = 1){
         if(l == tree[p].l && r == tree[p].r){
@@ -58,17 +61,6 @@ public:
         else if(l > mid)return query(l, r, 2 * p + 1);
         else return query(l, mid, 2 * p) + query(mid + 1, r, 2 * p + 1);
     }
-private:
-    node tree[4 * maxn];
-    void down(int p){
-        if(tree[p].now == 0) return;
-        if(tree[p].l < tree[p].r){
-            tree[2 * p].now += tree[p].now;
-            tree[2 * p + 1].now += tree[p].now;
-        }
-        tree[p].sum += (tree[p].r - tree[p].l + 1) * tree[p].now;
-        tree[p].now = 0;
-    }
     void build(int l,int r,int p = 1){
         tree[p].l = l;
         tree[p].r = r;
@@ -80,6 +72,17 @@ private:
             build(mid + 1, r, 2 * p + 1);
             tree[p].sum = tree[2 * p].sum + tree[2 * p + 1].sum;
         }
+    }
+private:
+    node tree[4 * maxn];
+    void down(int p){
+        if(tree[p].now == 0) return;
+        if(tree[p].l < tree[p].r){
+            tree[2 * p].now += tree[p].now;
+            tree[2 * p + 1].now += tree[p].now;
+        }
+        tree[p].sum += (tree[p].r - tree[p].l + 1) * tree[p].now;
+        tree[p].now = 0;
     }
 };
 

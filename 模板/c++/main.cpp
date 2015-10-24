@@ -24,6 +24,8 @@
 #define maxn 10005
 #define P 1000000007
 #define INF 2100000000
+#define min(x, y) (x < y ? x : y)
+#define max(x, y) (x > y ? x : y)
 using namespace std;
 
 int a[maxn];

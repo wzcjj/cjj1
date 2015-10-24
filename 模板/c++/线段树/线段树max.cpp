@@ -10,31 +10,26 @@
 #include <cstdio>
 #include <cstring>
 #include <cmath>
+#include <algorithm>
 #pragma comment(linker, "/STACK:102400000,102400000")
 #define maxn 200005
 #define P 1000000007
 #define INF 2100000000
 using namespace std;
 int a[maxn];
-int max(int x,int y){
-    return x>y?x:y;
-}
 class SegmentTree
 {
 public:
     struct node{
         int l, r;
-        int now, maxx;
+        int now, maxx, minn;
     };
-    
-    SegmentTree(int size){
-        build(1, size);
-    }
     
     void add(int l,int r,int v,int p = 1){
         if(l == tree[p].l && r == tree[p].r){
             tree[p].now = v;
             tree[p].maxx = v;
+            tree[p].minn = v;
             return;
         }
         down(p);
@@ -52,15 +47,42 @@ public:
             add(mid + 1, r, v, 2 * p + 1);
         }
         tree[p].maxx = max(tree[2 * p].maxx, tree[2 * p + 1].maxx);
+        tree[p].minn = min(tree[2 * p].minn, tree[2 * p + 1].minn);
     }
     
-    int query(int l,int r,int p = 1){
+    int querymax(int l,int r,int p = 1){
         down(p);
         if(l == tree[p].l && r == tree[p].r)return tree[p].maxx;
         int mid = (tree[p].l + tree[p].r) >> 1;
-        if(r <= mid)return query(l, r, 2 * p);
-        else if(l > mid)return query(l, r, 2 * p + 1);
-        else return max(query(l, mid, 2 * p), query(mid + 1, r, 2 * p + 1));
+        if(r <= mid)return querymax(l, r, 2 * p);
+        else if(l > mid)return querymax(l, r, 2 * p + 1);
+        else return max(querymax(l, mid, 2 * p), querymax(mid + 1, r, 2 * p + 1));
+    }
+    
+    int querymin(int l,int r,int p = 1){
+        down(p);
+        if(l == tree[p].l && r == tree[p].r)return tree[p].minn;
+        int mid = (tree[p].l + tree[p].r) >> 1;
+        if(r <= mid)return querymin(l, r, 2 * p);
+        else if(l > mid)return querymin(l, r, 2 * p + 1);
+        else return min(querymin(l, mid, 2 * p), querymin(mid + 1, r, 2 * p + 1));
+    }
+    
+    void build(int l,int r,int p = 1){
+        tree[p].l = l;
+        tree[p].r = r;
+        tree[p].now = -INF;
+        if(l == r) {
+            tree[p].maxx = a[l];
+            tree[p].minn = a[l];
+        }
+        if(l < r){
+            int mid = (l + r) >> 1;
+            build(l, mid, 2 * p);
+            build(mid + 1, r, 2 * p + 1);
+            tree[p].maxx = max(tree[2 * p].maxx, tree[2 * p + 1].maxx);
+            tree[p].minn = min(tree[2 * p].minn, tree[2 * p + 1].minn);
+        }
     }
 private:
     node tree[4 * maxn];
@@ -71,19 +93,8 @@ private:
             tree[2 * p + 1].now = tree[p].now;
         }
         tree[p].maxx = tree[p].now;
+        tree[p].minn = tree[p].now;
         tree[p].now = -INF;
-    }
-    void build(int l,int r,int p = 1){
-        tree[p].l = l;
-        tree[p].r = r;
-        tree[p].now = -INF;
-        if(l == r) tree[p].maxx = a[l];
-        if(l < r){
-            int mid = (l + r) >> 1;
-            build(l, mid, 2 * p);
-            build(mid + 1, r, 2 * p + 1);
-            tree[p].maxx = max(tree[2 * p].maxx, tree[2 * p + 1].maxx);
-        }
     }
 };
 

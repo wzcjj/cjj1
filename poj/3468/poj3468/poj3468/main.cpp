@@ -9,88 +9,171 @@
 #include <iostream>
 #include <cstdio>
 #include <cstring>
-#define maxn 10005
+#define maxn 100005
 #define P 1000000007
 #define INF 2100000000
 using namespace std;
 int a[maxn];
+#define RETURN_TYPE long long
 class SegmentTree
 {
 public:
     struct node{
         int l, r;
-        long long now, sum;
+        RETURN_TYPE nowadd, nowmodify, maxx, minn, sum;
     };
     
-    SegmentTree(int size){
-        build(1, size);
-    }
-    
-    void add(int l,int r,int v,int p = 1){
+    void modify(int l,int r,RETURN_TYPE v,int p = 1){
+        downadd(p);
         if(l == tree[p].l && r == tree[p].r){
-            tree[p].now += v;
+            tree[p].nowmodify = v;
+            downmodify(p);
             return;
         }
-        tree[p].sum += (r - l + 1) * v;
-        down(p);
+        downmodify(p);
         int mid = (tree[p].l + tree[p].r) >> 1;
-        if(r <= mid)add(l, r, v, 2 * p);
-        else if(l > mid)add(l, r, v, 2 * p + 1);
+        if(r <= mid){
+            modify(l, r, v, 2 * p);
+            downmodify(2 * p + 1);
+        }
+        else if(l > mid){
+            modify(l, r, v, 2 * p + 1);
+            downmodify(2 * p);
+        }
+        else{
+            modify(l, mid, v, 2 * p);
+            modify(mid + 1, r, v, 2 * p + 1);
+        }
+        up(p);
+    }
+    
+    void add(int l,int r,RETURN_TYPE v,int p = 1){
+        downmodify(p);
+        if(l == tree[p].l && r == tree[p].r){
+            tree[p].nowadd += v;
+            downadd(p);
+            return;
+        }
+        downadd(p);
+        int mid = (tree[p].l + tree[p].r) >> 1;
+        if(r <= mid){
+            add(l, r, v, 2 * p);
+            downadd(2 * p + 1);
+        }
+        else if(l > mid){
+            add(l, r, v, 2 * p + 1);
+            downadd(2 * p);
+        }
         else{
             add(l, mid, v, 2 * p);
             add(mid + 1, r, v, 2 * p + 1);
         }
+        up(p);
     }
     
-    long long query(int l,int r,int p = 1){
+    RETURN_TYPE querymax(int l,int r,int p = 1){
+        down(p);
+        if(l == tree[p].l && r == tree[p].r)return tree[p].maxx;
+        int mid = (tree[p].l + tree[p].r) >> 1;
+        if(r <= mid)return querymax(l, r, 2 * p);
+        else if(l > mid)return querymax(l, r, 2 * p + 1);
+        else return max(querymax(l, mid, 2 * p), querymax(mid + 1, r, 2 * p + 1));
+    }
+    
+    RETURN_TYPE querymin(int l,int r,int p = 1){
+        down(p);
+        if(l == tree[p].l && r == tree[p].r)return tree[p].minn;
+        int mid = (tree[p].l + tree[p].r) >> 1;
+        if(r <= mid)return querymin(l, r, 2 * p);
+        else if(l > mid)return querymin(l, r, 2 * p + 1);
+        else return min(querymin(l, mid, 2 * p), querymin(mid + 1, r, 2 * p + 1));
+    }
+    
+    RETURN_TYPE querysum(int l,int r,int p = 1){
         down(p);
         if(l == tree[p].l && r == tree[p].r)return tree[p].sum;
         int mid = (tree[p].l + tree[p].r) >> 1;
-        if(r <= mid)return query(l, r, 2 * p);
-        else if(l > mid)return query(l, r, 2 * p + 1);
-        else return query(l, mid, 2 * p) + query(mid + 1, r, 2 * p + 1);
+        if(r <= mid)return querysum(l, r, 2 * p);
+        else if(l > mid)return querysum(l, r, 2 * p + 1);
+        else return (querysum(l, mid, 2 * p) + querysum(mid + 1, r, 2 * p + 1));
     }
-private:
-    node tree[4 * maxn];
-    void down(int p){
-        if(tree[p].l < tree[p].r){
-            tree[2 * p].now += tree[p].now;
-            tree[2 * p + 1].now += tree[p].now;
-        }
-        tree[p].sum += (tree[p].r - tree[p].l + 1) * tree[p].now;
-        tree[p].now = 0;
-    }
+    
     void build(int l,int r,int p = 1){
         tree[p].l = l;
         tree[p].r = r;
-        tree[p].now = 0;
-        if(l == r) tree[p].sum = a[l];
+        tree[p].nowadd = 0;
+        tree[p].nowmodify = -INF;
+        if(l == r) {
+            tree[p].maxx = tree[p].minn = tree[p].sum = a[l];
+        }
         if(l < r){
             int mid = (l + r) >> 1;
             build(l, mid, 2 * p);
             build(mid + 1, r, 2 * p + 1);
+            tree[p].maxx = max(tree[2 * p].maxx, tree[2 * p + 1].maxx);
+            tree[p].minn = min(tree[2 * p].minn, tree[2 * p + 1].minn);
             tree[p].sum = tree[2 * p].sum + tree[2 * p + 1].sum;
         }
     }
+private:
+    node tree[4 * maxn];
+    void downadd(int p){
+        if(tree[p].nowadd == 0)return;
+        if(tree[p].l < tree[p].r){
+            downmodify(2 * p + 1);
+            downmodify(2 * p);
+            tree[2 * p].nowadd += tree[p].nowadd;
+            tree[2 * p + 1].nowadd += tree[p].nowadd;
+        }
+        tree[p].sum += (tree[p].r - tree[p].l + 1) * tree[p].nowadd;
+        tree[p].maxx += tree[p].nowadd;
+        tree[p].minn += tree[p].nowadd;
+        tree[p].nowadd = 0;
+    }
+    
+    void downmodify(int p){
+        if(tree[p].nowmodify == -INF)return;
+        if(tree[p].l < tree[p].r){
+            tree[2 * p].nowadd = 0;
+            tree[2 * p + 1].nowadd = 0;
+            tree[2 * p].nowmodify = tree[p].nowmodify;
+            tree[2 * p + 1].nowmodify = tree[p].nowmodify;
+        }
+        tree[p].maxx = tree[p].nowmodify;
+        tree[p].minn = tree[p].nowmodify;
+        tree[p].sum = (tree[p].r - tree[p].l + 1) * tree[p].nowmodify;
+        tree[p].nowmodify = -INF;
+    }
+    
+    void down(int p){
+        downadd(p);
+        downmodify(p);
+    }
+    
+    void up(int p){
+        tree[p].maxx = max(tree[2 * p].maxx, tree[2 * p + 1].maxx);
+        tree[p].minn = min(tree[2 * p].minn, tree[2 * p + 1].minn);
+        tree[p].sum = tree[2 * p].sum + tree[2 * p + 1].sum;
+    }
 };
-
+SegmentTree seg;
 int main(int argc, const char * argv[]) {
-    int i,j,m,n,N;
+    int i,m,n;
         scanf("%d%d",&n,&m);
         for(i=1;i<=n;i++)scanf("%d",&a[i]);
-        SegmentTree tre(n);
+    seg.build(1, n);
         for(i=1;i<=m;i++){
-            char c[1];
+            char c[5];
             scanf("%s",c);
             if(c[0]=='Q'){
                 int x,y;
                 scanf("%d%d",&x,&y);
-                printf("%lld\n",tre.query(x,y));
+                printf("%lld\n",seg.querysum(x,y));
             }
             else{
                 int x,y,z;
                 scanf("%d%d%d",&x,&y,&z);
-                tre.add(x,y,z);
+                seg.add(x,y,z);
             }
         }
     return 0;
