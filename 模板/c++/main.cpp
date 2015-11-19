@@ -23,9 +23,10 @@
 #pragma comment(linker, "/STACK:102400000,102400000")
 #define maxn 10005
 #define P 1000000007
-#define INF 2100000000
+#define INF 1000000000
 #define min(x, y) (x < y ? x : y)
 #define max(x, y) (x > y ? x : y)
+#define abs(x) ((x >= 0) ? x : -x)
 using namespace std;
 
 int a[maxn];

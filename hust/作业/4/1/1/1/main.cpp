@@ -98,7 +98,7 @@ public:
             return v;
         }
         int used = 0;
-        for(int i = 0; i < flow[x].size(); i ++) if(!flag[flow[x][i].y] && flow[x][i].value && dis[flow[x][i].y] > dis[x] && (val = dfs(flow[x][i].y, min(v, flow[x][i].value), t))) {
+        for(int i = 0; i < flow[x].size(); i ++) if(!flag[flow[x][i].y] && flow[x][i].value && dis[flow[x][i].y] > dis[x] && (val = dfs(flow[x][i].y, min(v - used, flow[x][i].value), t))) {
             flow[x][i].value -= val;
             flow[flow[x][i].y][flow[x][i].rev].value += val;
             used += val;
