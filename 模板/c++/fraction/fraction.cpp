@@ -100,6 +100,11 @@ private:
     
     Number mul(Number b){
         Number t;
+        long long p=gcd(this->x, b.y),q=gcd(this->y, b.x);
+        this->x/=p;
+        b.y/=p;
+        this->y/=q;
+        b.x/=q;
         t.y = this->y * b.y;
         t.x = this->x * b.x;
         t.neg = this->neg ^ b.neg;
@@ -112,6 +117,11 @@ private:
     
     Number div(Number b){
         Number t;
+        long long p=gcd(this->x, b.x),q=gcd(this->y, b.y);
+        this->x/=p;
+        b.x/=p;
+        this->y/=q;
+        b.y/=q;
         t.y = this->y * b.x;
         t.x = this->x * b.y;
         t.neg = this->neg ^ b.neg;

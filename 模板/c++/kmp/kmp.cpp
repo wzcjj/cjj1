@@ -14,7 +14,7 @@ int nex[100];
 void getNext(string W){
     nex[0]=-1;
     int j=-1;
-    for(int i=1;i<W.length();i++,j++){
+    for(int i=1;i<W.length();i++){
         while(j>-1&&W[j+1]!=W[i])j=nex[j];
         if(W[j+1]==W[i])j++;
         nex[i]=j;

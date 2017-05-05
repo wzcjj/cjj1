@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="将资源“cms/cms1/templates/abcd”重命名为“news”" description="重命名资源“abcd”" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="cms1/templates/abcd" name="news" stamp="1427003192424" updateReferences="true"/>
-</session>
